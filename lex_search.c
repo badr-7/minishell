@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:27:05 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/09/23 16:11:39 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/09/23 16:22:43 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ t_token	string_collect(t_lexer lexer)
 
 	mode = 0;
 	i = 0;
-	
-	
 }
 
 t_token	t_init(t_token_type	type, int len, char *p)
