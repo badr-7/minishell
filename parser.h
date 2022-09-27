@@ -6,23 +6,23 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 13:14:02 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/09/26 15:51:22 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:17:40 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "lexer.h"
+# include "lexer/lexer.h"
 # include "libft/libft.h"
 
-typedef struct parser
+typedef struct s_parser_node
 {
 	char					**av;
 	int						ac;
 	int						match_failed;
-	t_parser_node			*left;
-	t_parser_node			*right;
+	struct s_parser_node			*left;
+	struct s_parser_node			*right;
 	t_token_type			type;
 }			t_parser_node;
 
