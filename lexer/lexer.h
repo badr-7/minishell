@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:22:46 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/09/27 11:21:52 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:52:56 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef enum token_type
 	PIPE,
 	WORD,
 	ERROR,
+	END,
 }		t_token_type;
 
 typedef struct token
@@ -48,7 +49,6 @@ typedef struct s_lexer
 }		t_lexer;
 
 int		change_mode(char c);
-t_token	token_cmpr(t_lexer	*lexer, const char	*symbole, t_token_type type);
 t_token	t_init(t_token_type	type, int len, char *p);
 t_token	lex_search(t_lexer	lexer);
 t_lexer	lex_init(char *s);

@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:55:10 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/09/27 15:11:19 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/09/28 11:08:57 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,18 @@
 t_parser_node   *check_pipe(t_lexer  *lexer)
 {
     t_parser_node   *pipe_line;
-    t_parser_node   *cmd;
+    t_parser_node   *pipe;
     t_token         token;
 
     token = get_next_token(lexer);
     if (token.type == PIPE)
     {
-        cmd = collect_cmd(lexer);
-        if (cmd->match_failed == -1)
+        pipe_line = ft_pipe_line(lexer);
+        if (!pipe_line)
         {
             ft_printf("ERROE");
+            return (NULL);
         }
-        pipe_line = ft_pipe_line(lexer);
-        if (pipe_line)
-            return(pipe_line)
+        return (pipe_line);
     }
 }

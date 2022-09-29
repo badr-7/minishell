@@ -16,11 +16,11 @@ int main()
     t_token tok ;
 
     *lex = lex_init("ls -la | cd | pwd");
-    tok = get_token(lex);
+    // tok = get_token(lex);
     while(tok.type != ERROR)
     {
-       put_str(tok.pos, tok.len);
         tok = get_next_token(lex);
+        put_str(tok.pos, tok.len);
     }
     return (0);
 }

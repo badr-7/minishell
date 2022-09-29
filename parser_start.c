@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_input.c                                      :+:      :+:    :+:   */
+/*   parser_start.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 13:05:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/09/29 16:29:16 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/09/29 14:27:32 by mel-hous          #+#    #+#             */
+/*   Updated: 2022/09/29 14:51:24 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_parser_node	*parse_input(t_lexer *lexer)
+t_parser_node	*parse(char *input)
 {
-	t_parser_node	*pipeline;
-	t_token			token;
+	t_parser_node	*ast;
+	t_lexer			*lexer;
 
-	pipeline = ft_pipeline(lexer);
-	if (!pipeline || pipeline->match_failed == -1)
-		return (pipeline);
-	token = get_next_token(lexer);
-	if (token.type != END)
-	{
-		ft_putstr_fd( "minishel: syntax error: unexpected end of file\n", 2);
-		 node_tree_clear(&pipeline);
-	}
-	return (pipeline);
+	*lexer = lex_init(input);
+	ast = parse_input(lexer);
+	if (!ast)
+		return (NULL);
+	return (ast);
 }

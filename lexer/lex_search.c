@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:27:05 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/09/27 11:24:32 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:52:49 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,6 @@ t_token	t_init(t_token_type	type, int len, char *p)
 	tok.pos = p;
 	tok.len = len;
 	return (tok);
-}
-
-t_token	token_cmpr(t_lexer	*lexer, const char	*symbole, t_token_type type)
-{
-	int	i;
-
-	i = ft_strlen(symbole);
-	if (ft_strncmp(lexer->str, symbole, i))
-		return (t_init(ERROR, 0, NULL));
-	return (t_init(type, i, lexer->str));
 }
 
 int	change_mode(char c)

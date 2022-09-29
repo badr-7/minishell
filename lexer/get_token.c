@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 12:32:06 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/09/27 11:25:17 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:44:46 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,16 @@ t_token	get_token(t_lexer	*lexer)
 {
 	t_token	token;
 
-	token = token_cmpr(lexer, "|", PIPE);
-	if (token.type == ERROR)
-	{
-		token = token_cmpr(lexer, "<", RD_IN);
-	}
-	if (token.type == ERROR)
-	{
-		token = token_cmpr(lexer, ">", RD_OUT);
-	
-	}
-	if (token.type == ERROR)
-	{
-		token = token_cmpr(lexer, "<<", HERDOC);
-	
-	}
-	if (token.type == ERROR)
-	{
-		token = token_cmpr(lexer, ">>", RD_APP);
-
-	}
-	if (token.type == ERROR)
-	{
-		token = word_collect(lexer->str);
-
-	}
+	if (!ft_strncmp(lexer->str, "|", 1))
+		return (t_init(PIPE, 1, lexer->str));
+	if (!ft_strncmp(lexer->str, "<", 1))
+		return (t_init(RD_IN, 1, lexer->str));
+	if (!ft_strncmp(lexer->str, ">", 1))
+		return (t_init(RD_OUT, 1, lexer->str));
+	if (!ft_strncmp(lexer->str, "<<", 2))
+		return (t_init(HERDOC, 2, lexer->str));
+	if (!ft_strncmp(lexer->str, "<<", 2))
+		return (t_init(RD_APP, 2, lexer->str));
+	token = word_collect(lexer->str);
 	return (token);
 }
