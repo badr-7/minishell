@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:27:05 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/09/29 15:52:49 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:13:27 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,23 @@
 #include <unistd.h>
 #include <string.h>
 
-t_token	word_collect(char *s)
+t_token	word_collect(t_lexer lexer)
 {
 	int		mode;
 	int		len;
 	int		i;
+	char 	*s;
 
 	i = 0;
+	s = lexer.str;
 	mode = 0;
 	len = 0;
 	while (s[i] != '\0' && (mode != 0 || (ft_strchr(" \t\n|&()<>", s[i]))))
 	{
+		if (s[i] == '$')
+			return (lex_var(lexer, i));
+		if (s[i] == '*')
+			return (lex_wildcard(lexer, i));
 		mode = change_mode(*s);
 		len++;
 		i++;

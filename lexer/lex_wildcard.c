@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_token.c                                   :+:      :+:    :+:   */
+/*   lex_wildcard.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 12:41:49 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/09/30 15:38:21 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/09/30 17:07:17 by mel-hous          #+#    #+#             */
+/*   Updated: 2022/09/30 17:12:31 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-t_token	get_next_token(t_lexer	*lexer)
+t_token lex_wildcard(t_lexer    lexer, int  i)
 {
-	t_token token;
-	int	i;
-
-	i = 0;
-	token = get_token(*lexer);
-	lexer->pos += token.len;
-	lexer->str += token.len;
-	while (lexer->full_str[lexer->pos] == 32)
+    char	*s;
+	int		len;
+	
+	len = 0;
+	s = lexer.str;
+	if(i > 0)
 	{
-		lexer->pos++;
-		i++;
+		while(s[i] != 32)
+			i--;
 	}
-	lexer->str += i;
-	return (token);
+	while(s[i++] != '\0' && ft_strchr(" \t\n|&()<>", s[i]))
+        len++;
+	return (t_init(WLDC, len, s));
 }

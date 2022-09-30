@@ -15,7 +15,7 @@ int main()
     t_lexer *lex ;
     t_token tok ;
 
-    *lex = lex_init("ls -la | cd | pwd");
+    *lex = lex_init("echo *ab.c");
     // tok = get_token(lex);
     while(tok.type != ERROR)
     {
