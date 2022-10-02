@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lex_create.c                                       :+:      :+:    :+:   */
+/*   env_find.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 16:45:02 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/01 17:30:13 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/10/02 13:38:13 by mel-hous          #+#    #+#             */
+/*   Updated: 2022/10/02 13:53:10 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "env.h"
 
-t_lexer	lex_init(char *s)
+t_env_node *env_find(t_env_node *env, char  *s, int len)
 {
-	t_lexer	lexer;
-
-	lexer.full_str = s;
-	lexer.str = s;
-	return (lexer);
+    t_env_node *node;
+    
+    if (len == -1)
+        len = ft_strlen(s);
+    while(env)
+    {
+        if (len == env->len && !ft_strncmp(env->name, s, len))
+        {
+            node = env;
+            return (node);
+        }
+        env = env->next;
+    }
+    return (NULL);
 }

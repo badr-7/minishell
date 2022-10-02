@@ -22,7 +22,7 @@ CFLAGS = -Wall -Wextra -Werror
 .c.o:
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
-$(NAME): ${OBJS}
+$(NAME): ${OBJS} bonus
 		ar rcs ${NAME} ${OBJS}
 
 bonus : $(OBJSBONUS)

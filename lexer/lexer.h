@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:22:46 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/09/30 17:13:05 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/01 18:14:26 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ typedef struct s_lexer
 {
 	char	*full_str;
 	char	*str;
-	int		pos;
+	t_token	prev_type;
+	t_list	*wildcard;
 	t_error	error;
 }		t_lexer;
 

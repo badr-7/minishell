@@ -15,7 +15,7 @@ int main()
     t_lexer *lex ;
     t_token tok ;
 
-    *lex = lex_init("echo *ab.c");
+    *lex = lex_init("echo $> jdsk");
     // tok = get_token(lex);
     while(tok.type != ERROR)
     {
