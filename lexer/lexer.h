@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:22:46 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/01 18:14:26 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:52:54 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define LEXER_H
 
 #include "../libft/libft.h"
+# include "../env1/env.h"
+#include <dirent.h>
 
 typedef enum token_type
 {
@@ -34,6 +36,7 @@ typedef struct token
 {
 	int				len;
 	char			*pos;
+	t_list			*wildcard;
 	t_token_type	type;
 }			t_token;
 
@@ -48,7 +51,6 @@ typedef struct s_lexer
 	char	*full_str;
 	char	*str;
 	t_token	prev_type;
-	t_list	*wildcard;
 	t_error	error;
 }		t_lexer;
 
@@ -62,5 +64,6 @@ t_token	get_next_token(t_lexer	*lexer);
 t_token	check_next_token(t_lexer	lexer, int i);
 t_token lex_var(t_lexer lexer, int i);
 t_token lex_wildcard(t_lexer    lexer, int  i);
+t_token	t_WC_init(t_token_type	type, int len, t_list *p);
 
 #endif

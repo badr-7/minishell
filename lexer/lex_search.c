@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:27:05 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/02 11:12:10 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/03 13:21:13 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ t_token	word_collect(t_lexer lexer)
 	len = 0;
 	while (s[i] != '\0' && (mode != 0 || (ft_strchr(" \t\n|&()<>", s[i]))))
 	{
-		// if (s[i] == '$')
-		// 	return (lex_var(lexer, i));
-		// if (s[i] == '*' && mode == 0)
-		// 	return (lex_wildcard(lexer, i));
 		mode = change_mode(*s);
 		len++;
 		i++;
@@ -51,6 +47,18 @@ t_token	t_init(t_token_type	type, int len, char *p)
 	tok.type = type;
 	tok.pos = p;
 	tok.len = len;
+	tok.wildcard = NULL;
+	return (tok);
+}
+
+t_token	t_WC_init(t_token_type	type, int len, t_list *p)
+{
+	t_token	tok;
+
+	tok.type = type;
+	tok.pos = NULL;
+	tok.len = len;
+	tok.wildcard = p;
 	return (tok);
 }
 
