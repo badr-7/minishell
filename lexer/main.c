@@ -1,6 +1,8 @@
 #include "lexer.h"
 #include <stdlib.h>
 
+t_glb_v glb_v;
+
 void    put_str(char *s, int len)
 {
     int i;
@@ -14,8 +16,11 @@ int main()
 {
     t_lexer *lex ;
     t_token tok ;
+    char    **env;
 
-    *lex = lex_init("echo $> jdsk");
+
+    // glb_v.list = create_env(env);
+    *lex = lex_init("echo *_*x* jdsk");
     // tok = get_token(lex);
     while(tok.type != ERROR)
     {

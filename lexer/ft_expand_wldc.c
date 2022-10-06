@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 17:07:17 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/06 13:03:46 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/06 18:07:45 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,14 @@ t_token lex_wildcard(t_lexer    lexer, int  i)
 		while(s[i] != 32)
 			i--;
 	}
+	// printf("i = %d\n", i);
 	while(s[i++] != '\0' && ft_strchr(" \t\n|&()<>", s[i]))
         len++;
-	s = ft_substr(lexer.str, i, len);
-	list = wc_ld_create();
-	
-	
+	if (len == 0)
+		len += 1;
+	s = ft_substr(lexer.str, 0, len);
+	if(s[0] == '\0')
+	printf("str = %s\nlen = %d\n", s, len);
+	list = wc_ld_create(s);
 	return (t_wc_init(WLDC, len, list));
 }

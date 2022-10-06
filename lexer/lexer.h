@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:22:46 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/06 14:16:13 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/06 17:05:12 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 #include"../libft/libft.h"
 #include"../env1/env.h"
+#include <stdbool.h>
 
 
 typedef enum token_type
@@ -65,8 +66,12 @@ typedef struct s_lexer
 	t_error	error;
 }		t_lexer;
 
+typedef struct s_glb_v
+{
+	t_wc_node	*list;
+}			t_glb_v;
 
-
+extern t_glb_v glb_v;
 
 int			change_mode(int i, char c);
 char        *quote_def(char  *str);
@@ -82,7 +87,8 @@ t_token		get_next_token(t_lexer	*lexer);
 t_token		check_next_token(t_lexer	lexer, int i);
 t_token 	lex_wildcard(t_lexer    lexer, int  i);
 t_token		t_wc_init(t_token_type	type, int len, t_wc_node *p);
-t_wc_node	*wc_ld_create(void);
+t_wc_node	*wc_ld_create(char *s);
 t_token 	lex_var(t_lexer *lexer, int i, char **env);
+bool    	is_match(char *p, char *dir_n, int mode);
 
 #endif
