@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   quote_def.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 18:19:11 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/06 14:13:22 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/10/05 17:49:49 by mel-hous          #+#    #+#             */
+/*   Updated: 2022/10/06 14:16:06 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../lexer/lexer.h"
 
-char	*ft_substr(char const *s, unsigned int beg, int len)
+char    *quote_def(char  *str)
 {
-	char	*str;
-	int		i;
+    char			*s;
+	int				mode;
 
-	i = 0;
-	if (!s)
-		return (NULL);
-	if (beg >= ft_strlen(s))
-		return (ft_strdup(""));
-	if (len == -1)
-		len = ft_strlen(s) - (beg + 1);
-	if (len > (int)ft_strlen(&s[beg]))
-		len = ft_strlen(&s[beg]);
-	str = (char *)malloc((len + 1) * sizeof(char));
-	if (!str)
-		return (0);
-	while (i < len)
+	s = str;
+	mode = 0;
+	while (*s)
 	{
-		str[i] = s[beg + i];
-		i++;
+		mode = change_mode(mode, *s);
+		if (*s == '"' && (mode == 2 || mode == 0))
+			*s = DEF_DOUBEL_Q;
+		else if (*s == '\'' && (mode == 1 || mode == 0))
+			*s = DEF_SINGEL_Q;
+		s++;
 	}
-	str[i] = 0;
 	return (str);
 }

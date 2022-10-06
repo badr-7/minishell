@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 18:22:46 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/06 14:16:13 by mel-hous         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef LEXER_H
 # define LEXER_H
 
@@ -69,7 +57,7 @@ typedef struct s_lexer
 
 
 int			change_mode(int i, char c);
-char        *quote_def(char  *str);
+char        quote_def(char  *str);
 t_wc_node	*lstlast_dir(t_wc_node *lst);
 void	    lstadd_back_dir(t_wc_node **lst, t_wc_node *new_ld);
 t_wc_node	*lstnew_dir(char *content, int   len);

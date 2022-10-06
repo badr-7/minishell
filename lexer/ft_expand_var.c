@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:35:47 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/03 18:20:45 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:13:25 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_token lex_var(t_lexer *lexer, int i, char **env)
 {
-    int i;
     char *s;
     t_env_node  *node;
 
@@ -24,8 +23,9 @@ t_token lex_var(t_lexer *lexer, int i, char **env)
         while(lexer->str[i] && ft_isalnum(lexer->str[i]))
             i++;
         s = ft_substr(lexer->str, 1 , i);
-        node = env_find(env, s, i);
+        node = env_find(node, s, i);
         
         return (t_init(WORD, node->len, node->content));
     }
+     return (t_init(WORD, node->len, node->content));
 }
