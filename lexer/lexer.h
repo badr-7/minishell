@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:22:46 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/06 17:05:12 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:20:18 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_lexer
 
 typedef struct s_glb_v
 {
-	t_wc_node	*list;
+	t_env_node	*list;
 }			t_glb_v;
 
 extern t_glb_v glb_v;
@@ -80,7 +80,7 @@ void	    lstadd_back_dir(t_wc_node **lst, t_wc_node *new_ld);
 t_wc_node	*lstnew_dir(char *content, int   len);
 t_token		t_init(t_token_type	_tp, int len, char *p);
 t_token		lex_search(t_lexer	lexer);
-t_lexer		lex_init(char *s);
+t_lexer		*lex_init(char *s);
 t_token		word_collect(t_lexer	lexer);
 t_token		get_token(t_lexer lexer);
 t_token		get_next_token(t_lexer	*lexer);
@@ -88,7 +88,7 @@ t_token		check_next_token(t_lexer	lexer, int i);
 t_token 	lex_wildcard(t_lexer    lexer, int  i);
 t_token		t_wc_init(t_token_type	type, int len, t_wc_node *p);
 t_wc_node	*wc_ld_create(char *s);
-t_token 	lex_var(t_lexer *lexer, int i, char **env);
+t_token 	lex_var(t_lexer lexer, int i);
 bool    	is_match(char *p, char *dir_n, int mode);
 
 #endif

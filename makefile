@@ -6,7 +6,7 @@
 #    By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/23 11:32:30 by mel-hous          #+#    #+#              #
-#    Updated: 2022/09/26 15:46:28 by mel-hous         ###   ########.fr        #
+#    Updated: 2022/10/07 14:24:21 by mel-hous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = parser.a
 
 CC = gcc
 
-CFLAGS = -Wextra -Wall -Werror
+CFLAGS = -Wextra -Wall -Werror -g -fsanitize=adress
 
 SRC = 	lexer/get_next_token.c 
 		lexer/get_token.c

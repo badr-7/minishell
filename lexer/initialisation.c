@@ -6,19 +6,20 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:45:02 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/06 13:14:19 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/07 14:12:08 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-t_lexer	lex_init(char *s)
+t_lexer	*lex_init(char *s)
 {
-	t_lexer	lexer;
+	t_lexer	*lexer;
 
-	lexer.full_str = s;
-	lexer.str = s;
-	lexer.prev_type = t_init(CHAR_NULL, 0, NULL);
+	lexer = malloc(sizeof(t_lexer));
+	lexer->full_str = s;
+	lexer->str = s;
+	lexer->prev_type = t_init(CHAR_NULL, 0, NULL);
 	return (lexer);
 }
 
