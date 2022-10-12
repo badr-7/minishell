@@ -19,7 +19,7 @@ int main(int ac, char **av, char *env[])
 
 
     glb_v.list = create_env(env);
-    lex = lex_init("echo * jdsk");
+    lex = lex_init("echo \"$mel-hous");
     //  tok = get_token(lex);
     while(tok.type != ERROR)
     {
@@ -27,7 +27,7 @@ int main(int ac, char **av, char *env[])
         if(tok.type == VAR)
             put_str(tok.pos, ft_strlen(tok.pos));
         else
-            put_str(tok.pos, tok.len);
+        put_str(tok.pos, tok.len);
     }
     return (0);
 }

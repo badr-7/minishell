@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:44:55 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/06 18:01:39 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:09:01 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ t_wc_node  *wc_ld_create(char *s)
         if(!ft_strncmp(dirp->d_name, "..", 2))
             dirp = readdir(dp);
         if(is_match(s, dirp->d_name, 0) == true)
-        {
             lstadd_back_dir(&_list, lstnew_dir(dirp->d_name, dirp->d_namlen));
-           
-        }
         dirp = readdir(dp);
     }
     return(_list);

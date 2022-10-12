@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:35:47 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/07 14:33:28 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:33:07 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_token lex_var(t_lexer lexer, int i)
 
     if (lexer.str[0] == '$')  
     {
-        printf("i = %d\n", i);
         s = ft_substr(lexer.str, 1 , i+1);
         node = env_find(glb_v.list, s, i - 1);
         if (!node)
