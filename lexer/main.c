@@ -19,8 +19,9 @@ int main(int ac, char **av, char *env[])
 
 
     glb_v.list = create_env(env);
-    lex = lex_init("echo \"$mel-hous");
+    lex = lex_init("echo \"\"$PATH\"\"");
     //  tok = get_token(lex);
+    // printf("%s\n", lex->str);
     while(tok.type != ERROR)
     {
         tok = get_next_token(lex);

@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 13:25:18 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/06 14:06:28 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:43:43 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,23 @@ int	change_mode(int i, char c)
 		return (1);
     }
 	if (c == 34)
+	{
+        if (i == 2)
+            return (0);
+		return (2);
+    }
+	return (0);
+}
+
+int	change_mode2(int i, char c)
+{
+	if (c == DEF_SINGEL_Q)
+    {
+        if (i == 1)
+            return (0);
+		return (1);
+    }
+	if (c == DEF_DOUBEL_Q)
 	{
         if (i == 2)
             return (0);

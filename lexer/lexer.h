@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:22:46 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/07 14:20:18 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:25:43 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ t_token		t_wc_init(t_token_type	type, int len, t_wc_node *p);
 t_wc_node	*wc_ld_create(char *s);
 t_token 	lex_var(t_lexer lexer, int i);
 bool    	is_match(char *p, char *dir_n, int mode);
+int			change_mode2(int i, char c);
 
 #endif

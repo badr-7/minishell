@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:45:02 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/07 14:12:08 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:27:12 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_lexer	*lex_init(char *s)
 	t_lexer	*lexer;
 
 	lexer = malloc(sizeof(t_lexer));
+	// s = quote_def(s);
 	lexer->full_str = s;
 	lexer->str = s;
 	lexer->prev_type = t_init(CHAR_NULL, 0, NULL);
