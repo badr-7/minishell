@@ -19,16 +19,19 @@ int main(int ac, char **av, char *env[])
 
 
     glb_v.list = create_env(env);
-    lex = lex_init("echo \"\"$PATH\"\"");
+    lex = lex_init("cat $USER$USER$USER");
+    // puts("2\n");
+    // printf("lex.str = %s\n", lex->str);
     //  tok = get_token(lex);
     // printf("%s\n", lex->str);
     while(tok.type != ERROR)
     {
         tok = get_next_token(lex);
-        if(tok.type == VAR)
+        if(tok.type == VAR && tok.pos)
             put_str(tok.pos, ft_strlen(tok.pos));
         else
         put_str(tok.pos, tok.len);
     }
     return (0);
 }
+
