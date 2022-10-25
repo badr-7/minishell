@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:28:10 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/06 14:10:24 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/25 10:40:55 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *src);
 //PART 2
 char	*ft_substr(char const *s, unsigned int start, int len);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);

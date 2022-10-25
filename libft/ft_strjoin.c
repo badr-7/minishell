@@ -6,13 +6,13 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 20:01:06 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/19 13:52:38 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/25 13:03:32 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*s;
 	int		len;
@@ -32,7 +32,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_memmove(s, s1, l1);
 	ft_memmove((s + l1), s2, l2);
 	s[len] = '\0';
-	free(s1);
-	free(s2);
 	return (s);
 }

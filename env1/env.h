@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 11:53:03 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/06 14:08:53 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:56:30 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ t_env_node *env_find(t_env_node *env, char  *s, int len);
 t_env_node	*lstlast(t_env_node *lst);
 void	    add_back(t_env_node **lst, t_env_node *new);
 t_env_node	*new_node(char *content, char *name, int len);
+char         *env_find2(t_env_node *env, char  *s, int len);
 
 #endif
