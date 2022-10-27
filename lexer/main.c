@@ -52,18 +52,22 @@ int main(int ac, char **av, char *env[])
     // if (s == NO_EXPANSION)
     //     return(0);
     // printf("%s\n", s);
-    lex = lex_init("echo lalaUSER\"\"");
+    lex = lex_init(quote_def("\"'\"$USER"));
+    puts("1\n");
+    // lex = lex_init(av[1]);
     // puts("2\n");
     // printf("lex.str = %s\n", lex->str);
-     tok = get_token(*lex);
+     tok.type = END;
     // printf("%s\n", lex->str);
     while(tok.type != ERROR)
     {
         tok = get_next_token(lex);
         if(tok.type == VAR && tok.pos)
             put_str(tok.pos, ft_strlen(tok.pos));
+        else if(tok.type == END)
+            write(1, "unexepted end of file", 22);
         else
-        put_str(tok.pos, tok.len);
+            put_str(tok.pos, tok.len);
     }
     return (0);
 }

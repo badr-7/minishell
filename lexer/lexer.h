@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:22:46 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/25 10:19:20 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:29:30 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ t_wc_node	*lstnew_dir(char *content, int   len);
 t_token		t_init(t_token_type	_tp, int len, char *p);
 t_token		lex_search(t_lexer	lexer);
 t_lexer		*lex_init(char *s);
-t_token		word_collect(t_lexer	lexer);
-t_token		get_token(t_lexer lexer);
+t_token		word_collect(t_lexer	*lexer);
+t_token		get_token(t_lexer *lexer);
 t_token		get_next_token(t_lexer	*lexer);
 t_token		check_next_token(t_lexer	lexer, int i);
 t_token 	lex_wildcard(t_lexer    lexer, int  i);
@@ -91,5 +91,8 @@ t_wc_node	*wc_ld_create(char *s);
 t_token 	lex_var(t_lexer lexer, int len);
 bool    	is_match(char *p, char *dir_n, int mode);
 int			change_mode2(int i, char c);
+
+
+// void    put_str(char *s, int len);
 
 #endif
