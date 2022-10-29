@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:27:05 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/27 10:05:15 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/29 12:35:36 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ t_token	word_collect(t_lexer *lexer)
 	// puts("a\n");
 	while (s[len] != '\0' && (mode != 0 || (ft_strchr(" \t\n|&()<>", s[len]))))
 	{
-		// printf("*s = %c\n", s[i]);
 		mode = change_mode2(mode, s[len]);
 		if(s[len] == '$')
+		{
+			if(var == 2)
+				var = 3;
 			var = 1;
-		if(s[len] == '*')
+		}
+		if((s[len] == '*' && var == 0))
 			var = 2;
 		len++;
 	}
@@ -47,7 +50,7 @@ t_token	word_collect(t_lexer *lexer)
 	if (mode != 0 && s[i] == '\0')
 		return (t_init(END, i, s));
 	// s = ft_expand_wldc(len, lexer);
-	if (var == 2)
+	if (var == 2 || var == 3)
 	{
 		token = lex_wildcard(*lexer, i);
 		if (token.wildcard != NULL)
@@ -55,7 +58,7 @@ t_token	word_collect(t_lexer *lexer)
 			token.len = len;
 			while(token.wildcard)
 			{
-				// printf("--%s\n", token.wildcard->d_name);
+				printf("--%s\n", token.wildcard->d_name);
 				token.wildcard = token.wildcard->next;
 			}
 			return(token);
@@ -63,7 +66,7 @@ t_token	word_collect(t_lexer *lexer)
 	}
 	// puts("a\n");
 	// put_str(lexer.str,len);
-	if(var == 1)
+	if(var == 1 || var == 3)
 	{
     	// puts("1\n");
 		token = lex_var(*lexer, len - 1);

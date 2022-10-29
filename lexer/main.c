@@ -10,7 +10,12 @@ void    put_str(char *s, int len)
 
     i = 0;
     while(i < len)
+    {
+    if(s[i] != DEF_DOUBEL_Q && s[i] != DEF_SINGEL_Q)
         write(1, &s[i++], 1);
+    else 
+        i++;
+    }
     write(1, "\n", 1);
 }
 // char    *exp_var(char **sp, t_env_node *node, char *expand)
@@ -52,8 +57,8 @@ int main(int ac, char **av, char *env[])
     // if (s == NO_EXPANSION)
     //     return(0);
     // printf("%s\n", s);
-    lex = lex_init(quote_def("\"'\"$USER"));
-    puts("1\n");
+    lex = lex_init(quote_def(ft_strdup("echo *")));
+    // puts("1\n");
     // lex = lex_init(av[1]);
     // puts("2\n");
     // printf("lex.str = %s\n", lex->str);

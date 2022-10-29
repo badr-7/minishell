@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:55:10 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/09/28 11:08:57 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/29 13:43:20 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_parser_node   *check_pipe(t_lexer  *lexer)
             ft_printf("ERROE");
             return (NULL);
         }
-        return (pipe_line);
+        return (pipe_line); 
     }
+    
 }

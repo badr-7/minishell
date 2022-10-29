@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 13:14:02 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/28 17:57:49 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/29 15:29:34 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 # include "lexer/lexer.h"
 # include "libft/libft.h"
 
+# define MISSMATCH (void *)-1
+
 typedef struct s_rdr_node
 {
 	t_token_type			type;
 	char					*file;
-	t_rdr_node				*next;
+	struct s_rdr_node				*next;
 }			t_rdr_node;
 typedef struct s_parser_node
 {

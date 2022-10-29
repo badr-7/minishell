@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 17:07:17 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/28 18:00:23 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/29 12:57:44 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_token	lex_wildcard(t_lexer	lexer, int i)
 	}
 	while (s[i] != '\0' && ft_strchr(" \t\n|&()<>", s[i]))
 		i++;
-	len = i;
+	len = i; 
 	if (len == 0)
 		len += 1;
 	s = ft_substr(s, 0, len);
