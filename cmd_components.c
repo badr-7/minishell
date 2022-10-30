@@ -6,27 +6,30 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 12:40:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/29 16:00:51 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/30 17:27:52 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_list **cmd_ccomponents(t_lexer *lexer)
+t_cmd *cmd_ccomponents(t_lexer *lexer, t_cmd	*cmd, t_rdr_node	*rdr)
 {
-    t_list	**elem;
-	t_list	*new;
 	t_token	token;
 
-    token = get_token(lexer);
-	*elem = ft_lstnew(ft_substr(lexer->str, 0, token.len));
-	token = get_next_token(lexer);
-	while(token.type == WORD || token.type == VAR ||
-		token.type == WLDC)
+    token = get_next_token(lexer);
+	while(token.type != END || token.type != ERROR ||
+		token.type != PIPE )
 	{
-		new = ft_lstnew(ft_substr(lexer->str, 0, token.len));
-		ft_lstadd_back(elem, new);
+		if (token.type == WORD)
+			cmd_addback(cmd, ft_new_cmd(ft_substr(lexer->str, 0, token.len), NULL));
+		else if(token.type == VAR)
+			cmd_addback(cmd, ft_new_cmd(token.pos, NULL));
+		else if(token.type == WLDC)
+			cmd_addback(cmd, ft_new_cmd(token.pos, token.wildcard));
+		else if(token.type == RD_APP || token.type == RD_IN ||
+				token.type == RD_OUT || token.type == HERDOC)
+			rdr = collect_rdr(lexer, &rdr);
 		token = get_next_token(lexer);
 	}
-	return (elem);
+	return (cmd);
 }

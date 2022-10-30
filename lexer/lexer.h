@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 18:22:46 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/29 15:29:27 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/30 11:58:31 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 #include"../libft/libft.h"
 #include"../env1/env.h"
+#include"../utils/utils.h"
 #include <stdbool.h>
 
 
@@ -37,12 +38,6 @@ typedef enum token_type
 	END,
 }		t_token_type;
 
-typedef struct s_wc_node
-{
-	char				*d_name;
-	int					len;
-	struct s_wc_node	*next;
-}		t_wc_node;
 
 typedef struct token
 {
@@ -75,9 +70,6 @@ extern t_glb_v glb_v;
 
 int			change_mode(int i, char c);
 char        *quote_def(char  *str);
-t_wc_node	*lstlast_dir(t_wc_node *lst);
-void	    lstadd_back_dir(t_wc_node **lst, t_wc_node *new_ld);
-t_wc_node	*lstnew_dir(char *content, int   len);
 t_token		t_init(t_token_type	_tp, int len, char *p);
 t_token		lex_search(t_lexer	lexer);
 t_lexer		*lex_init(char *s);

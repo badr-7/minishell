@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 16:36:04 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/29 11:06:56 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/30 17:43:07 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	read_heredoc(char *f, char *delim, bool expand)
 
 static char	*get_heredoc_filename(t_token t)
 {
-	static int	n = 0;
+	static int	i = 0;
 	char		*n_str;
 	char		*delim;
 	char		*f;
@@ -80,7 +80,7 @@ static char	*get_heredoc_filename(t_token t)
 
 	expand = !ft_memchr(t.pos, DEF_SINGEL_Q, t.len);
 	expand = (expand && !ft_memchr(t.pos, DEF_DOUBEL_Q, t.len));
-	n_str = ft_itoa(n);
+	n_str = ft_itoa(i);
 	delim = ft_substr(t.pos, 0, t.len);
 	if (delim)
 		remove_quotes_enc(delim);
@@ -95,7 +95,7 @@ static char	*get_heredoc_filename(t_token t)
 		return (NULL);
 	}
 	free(delim);
-	n++;
+	i++;
 	return (f);
 }
 
@@ -120,21 +120,22 @@ static char	*get_filename(t_token token)
 	return (s);
 }
 
-t_rdr_node	*rdr_init(t_token_type type, t_token str)
+t_rdr_node	*collect_cmd(t_lexer	*lexer, t_rdr_node	*rdr)
 {
-	t_rdr_node	*rdr;
+	t_token		token;
 
+	token = get_next_token(lexer);
 	rdr = malloc(sizeof(t_rdr_node));
 	if (!rdr)
 	{
 		perror("minishell");
 		return (NULL);
 	}
-	rdr->type = type;
+	rdr->type = lexer->prev_type.type;
 	if (rdr->type == HERDOC)
-		rdr->file = get_heredoc_filename(str);
+		rdr->file = get_heredoc_filename(token);
 	else
-		rdr->file = get_filename(str);
+		rdr->file = get_filename(token);
 	if (rdr->file)
 		return (rdr);
 	free(rdr);

@@ -57,7 +57,7 @@ int main(int ac, char **av, char *env[])
     // if (s == NO_EXPANSION)
     //     return(0);
     // printf("%s\n", s);
-    lex = lex_init(quote_def(ft_strdup("echo *")));
+    lex = lex_init(quote_def(ft_strdup(" echo >> $UlSER\"\"")));
     // puts("1\n");
     // lex = lex_init(av[1]);
     // puts("2\n");
@@ -66,6 +66,7 @@ int main(int ac, char **av, char *env[])
     // printf("%s\n", lex->str);
     while(tok.type != ERROR)
     {
+        // puts("1\n");
         tok = get_next_token(lex);
         if(tok.type == VAR && tok.pos)
             put_str(tok.pos, ft_strlen(tok.pos));

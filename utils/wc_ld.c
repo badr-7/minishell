@@ -6,11 +6,11 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:27:14 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/06 12:58:38 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/30 16:26:09 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lexer/lexer.h"
+#include "utils.h"
 
 t_wc_node	*lstlast_dir(t_wc_node *lst)
 {
