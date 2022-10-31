@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 11:53:24 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/30 16:28:34 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/31 11:10:23 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,8 @@ t_cmd	*cmd_lstlast(t_cmd *lst);
 t_wc_node	*lstlast_dir(t_wc_node *lst);
 void	lstadd_back_dir(t_wc_node **lst, t_wc_node *new_ld);
 t_wc_node	*lstnew_dir(char *content, int   len);
+int	wc_size(t_wc_node *lst);
+int	cmd_size(t_cmd *lst);
+void	wc_clear(t_wc_node **lst);
+void	cmd_clear(t_cmd **lst);
 #endif

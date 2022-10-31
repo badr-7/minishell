@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:27:05 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/30 18:26:37 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/31 08:37:28 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_token	word_collect(t_lexer *lexer)
 	while (s[len] != '\0' && (mode != 0 || (ft_strchr(" \t\n|&()<>", s[len]))))
 	{
 		mode = change_mode2(mode, s[len]);
-		if(s[len] == '$')
+		if(s[len] == '$' && mode != 1)
 		{
 			if(var == 2)
 				var = 3;

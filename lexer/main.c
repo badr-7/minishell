@@ -57,7 +57,7 @@ int main(int ac, char **av, char *env[])
     // if (s == NO_EXPANSION)
     //     return(0);
     // printf("%s\n", s);
-    lex = lex_init(quote_def(ft_strdup(" echo >> $UlSER\"\"")));
+    lex = lex_init(quote_def(ft_strdup(" echo >> '$USER''$USER'\"\"")));
     // puts("1\n");
     // lex = lex_init(av[1]);
     // puts("2\n");

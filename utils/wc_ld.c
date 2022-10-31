@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:27:14 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/30 16:26:09 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/31 11:22:27 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,33 @@ t_wc_node	*lstnew_dir(char *content, int   len)
     s->len = len;
 	s->next = NULL;
 	return (s);
+}
+
+int	wc_size(t_wc_node *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}
+
+void	wc_clear(t_wc_node **lst)
+{
+	t_wc_node	*tmp;
+
+	tmp = 0;
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		tmp = *lst;
+		*lst = (*lst)->next;
+		// free((tmp)->d_name);
+		free(tmp);
+	}
 }

@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collect_cmd.c                                      :+:      :+:    :+:   */
+/*   av_creat.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 14:45:13 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/31 09:43:15 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/10/31 09:58:13 by mel-hous          #+#    #+#             */
+/*   Updated: 2022/10/31 10:34:07 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_parser_node   *collect_cmd(t_lexer *lexer)
+char **av_creat(t_cmd *list)
 {
-    t_cmd			**elem;
-	t_parser_node	*node;
-	t_rdr_node		*rdrlst;
-	t_token			token;
+    char **av;
+    int size;
 
-	rdrlst = NULL;
-	token = get_token(lexer);
-	while (token.type != ERROR || token.type != PIPE || token.type != END)
-	{
-		token = get_next_token(lexer);
-		elem = cmd_ccomponents(lexer, *elem, &rdrlst);
-	}
-	
-	return (elem);
+    size = cmd_size(list);
+    av = malloc(sizeof(char *) * size + 1);
+    while(list)
+    {
+        if (list->wc)
+        {
+            while(list->wc)
+            {
+                list->wc = list->wc->next;
+            }
+        }
+        list = list->next;
+    }
 }

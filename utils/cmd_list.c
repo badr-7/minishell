@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 11:43:44 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/30 16:28:56 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/31 11:22:16 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,53 @@ t_cmd	*cmd_lstlast(t_cmd *lst)
 	while (!(lst->next == NULL))
 		lst = lst->next;
 	return (lst);
+}
+
+int	cmd_size(t_cmd *lst)
+{
+	int	i;
+
+	i = 0;
+	if	(!lst)
+		return(0);
+	while (lst)
+	{
+		if (lst->wc)
+		{
+			i += wc_size(lst->wc);
+			lst = lst->next;
+		}
+		else
+		{
+			i++;
+			lst = lst->next;
+		}
+	}
+	return (i);
+}
+
+void	cmd_clear(t_cmd **lst)
+{
+	t_cmd	*tmp;
+	
+
+	tmp = 0;
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		if((*lst)->wc)
+		{
+			wc_clear(&(*lst)->wc);
+			*lst = (*lst)->next;
+			free(tmp);
+		}
+		else
+		{
+			tmp = *lst;
+			*lst = (*lst)->next;
+			// free((tmp)->word);
+			free(tmp);
+		}
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 12:40:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/30 17:27:52 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/10/31 08:45:12 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@ t_cmd *cmd_ccomponents(t_lexer *lexer, t_cmd	*cmd, t_rdr_node	*rdr)
 			cmd_addback(cmd, ft_new_cmd(token.pos, token.wildcard));
 		else if(token.type == RD_APP || token.type == RD_IN ||
 				token.type == RD_OUT || token.type == HERDOC)
-			rdr = collect_rdr(lexer, &rdr);
+		{
+			if (!rdr)
+				rdr = collect_rdr(lexer, &rdr);
+			else
+				
+		}
 		token = get_next_token(lexer);
 	}
 	return (cmd);

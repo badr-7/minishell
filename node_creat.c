@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collect_cmd.c                                      :+:      :+:    :+:   */
+/*   node_creat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 14:45:13 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/31 09:43:15 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/10/31 09:43:36 by mel-hous          #+#    #+#             */
+/*   Updated: 2022/10/31 09:56:33 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_parser_node   *collect_cmd(t_lexer *lexer)
+static int  av_size(char **av)
 {
-    t_cmd			**elem;
-	t_parser_node	*node;
-	t_rdr_node		*rdrlst;
-	t_token			token;
+    int i;
 
-	rdrlst = NULL;
-	token = get_token(lexer);
-	while (token.type != ERROR || token.type != PIPE || token.type != END)
-	{
-		token = get_next_token(lexer);
-		elem = cmd_ccomponents(lexer, *elem, &rdrlst);
-	}
-	
-	return (elem);
+    i = 0;
+    if(!av)
+        return(0);
+    while(*av++)
+        i++;
+    return(i);
+}
+
+t_parser_node   *node_create(char **av, t_rdr_node *rdrlist, t_token_type tp)
+{
+    t_parser_node   *node;
+
+    node = malloc(sizeof(t_parser_node));
+    node->av = av;
+    node->ac = av_size(av);
+    node->type = tp;
+    node->rdrlst = rdrlist;
+    node->right = NULL;
+    node->left = NULL;
 }
