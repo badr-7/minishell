@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 16:36:04 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/30 17:43:07 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/01 14:44:12 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,33 +70,31 @@ static int	read_heredoc(char *f, char *delim, bool expand)
 	return (0);
 }
 
-static char	*get_heredoc_filename(t_token t)
+static char	*get_heredoc_filename(t_token t, char *delim)
 {
+	char		*file;
 	static int	i = 0;
-	char		*n_str;
-	char		*delim;
-	char		*f;
-	bool		expand;
+	bool		exp;
+	char		*n_file;
 
-	expand = !ft_memchr(t.pos, DEF_SINGEL_Q, t.len);
-	expand = (expand && !ft_memchr(t.pos, DEF_DOUBEL_Q, t.len));
-	n_str = ft_itoa(i);
-	delim = ft_substr(t.pos, 0, t.len);
+	exp = !ft_memchr(t.pos, DEF_SINGEL_Q, t.len);
+	exp = (exp && !ft_memchr(t.pos, DEF_DOUBEL_Q, t.len));
+	n_file = ft_itoa(i);
 	if (delim)
 		remove_quotes_enc(delim);
-	if (n_str)
-		f = ft_strjoin("/tmp/minishell-heredoc-", n_str);
-	free(n_str);
-	if (!delim || !n_str || !f || read_heredoc(f, delim, expand))
+	if (n_file)
+		file = ft_strjoin("/tmp/minishell-heredoc-", n_file);
+	free(n_file);
+	if (!delim || !n_file || !file || read_heredoc(file, delim, exp))
 	{
 		perror("minishell");
 		free(delim);
-		free(f);
+		free(file);
 		return (NULL);
 	}
 	free(delim);
 	i++;
-	return (f);
+	return (file);
 }
 
 static char	*get_filename(t_token token)
@@ -120,7 +118,7 @@ static char	*get_filename(t_token token)
 	return (s);
 }
 
-t_rdr_node	*collect_cmd(t_lexer	*lexer, t_rdr_node	*rdr)
+t_rdr_node	*collect_rdr(t_lexer	*lexer, t_rdr_node	*rdr)
 {
 	t_token		token;
 
@@ -133,7 +131,7 @@ t_rdr_node	*collect_cmd(t_lexer	*lexer, t_rdr_node	*rdr)
 	}
 	rdr->type = lexer->prev_type.type;
 	if (rdr->type == HERDOC)
-		rdr->file = get_heredoc_filename(token);
+		rdr->file = get_heredoc_filename(token, ft_substr(token.pos, 0, token.len));
 	else
 		rdr->file = get_filename(token);
 	if (rdr->file)

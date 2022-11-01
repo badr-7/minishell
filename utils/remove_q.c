@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collect_cmd.c                                      :+:      :+:    :+:   */
+/*   remove_q.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 14:45:13 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/01 13:40:47 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/11/01 14:45:20 by mel-hous          #+#    #+#             */
+/*   Updated: 2022/11/01 14:59:48 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../lexer/lexer.h"
 
-t_parser_node   *collect_cmd(t_lexer *lexer)
+char    *remove_quotes_enc(char *start)
 {
-    t_cmd			**elem;
-	t_parser_node	*node;
-	t_rdr_node		*rdrlst;
-	t_token			token;
+    char    *s;
+    int    n;
 
-	rdrlst = NULL;
-	token = get_token(lexer);
-	if (token.type != ERROR || token.type != PIPE || token.type != END)
-	{
-		token = get_next_token(lexer);
-		elem = cmd_ccomponents(lexer, *elem, &rdrlst);
-	}
-	
-	return (elem);
+    s = start;
+    n = strlen(s) + 1;
+    while (*s)
+    {
+        if (*s == DEF_SINGEL_Q || *s == DEF_DOUBEL_Q)
+            ft_memmove(s, s + 1, n - 1);
+        else
+            s++;
+        n--;
+    }
+    return (start);
 }

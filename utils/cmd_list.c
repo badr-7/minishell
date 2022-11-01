@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 11:43:44 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/31 11:22:16 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:17:23 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_cmd	*ft_new_cmd(char *content, t_wc_node **list)
 	if (s == NULL)
 		return (NULL);
 	s->word = content;
-    s->wc = *list;
+	if (list)
+    	s->wc = *list;
 	s->next = NULL;
 	return (s);
 }

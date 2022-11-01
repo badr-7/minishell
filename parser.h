@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 13:14:02 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/31 09:56:41 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/01 13:49:41 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "lexer/lexer.h"
 # include "libft/libft.h"
+#include <readline/readline.h>
 
 # define MISSMATCH (void *)-1
 
@@ -41,5 +42,7 @@ t_parser_node	*parse(char *input);
 t_parser_node	*parse_input(t_lexer *lexer);
 t_cmd			*cmd_ccomponents(t_lexer *lexer, t_cmd	*cmd, t_rdr_node	*rdr);
 t_parser_node   *node_create(char **av, t_rdr_node *rdrlist, t_token_type tp);
+char			**av_creat(t_cmd **list);
+t_rdr_node		*collect_rdr(t_lexer	*lexer, t_rdr_node	*rdr);
 
 #endif

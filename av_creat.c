@@ -6,28 +6,40 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 09:58:13 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/31 10:34:07 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:28:57 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-char **av_creat(t_cmd *list)
+char **av_creat(t_cmd **lst)
 {
     char **av;
+    int i;
     int size;
+    t_cmd *list;
 
+    i = 0;
+    list = *lst;
     size = cmd_size(list);
     av = malloc(sizeof(char *) * size + 1);
+    if(!av)
+        return(NULL);
     while(list)
     {
         if (list->wc)
         {
             while(list->wc)
             {
+                av[i++] = list->wc->d_name;
                 list->wc = list->wc->next;
             }
         }
-        list = list->next;
+        else
+            av[i++] = list->word;
+       list = list->next;
     }
+    av[i++] = NULL;
+    cmd_clear(lst);
+    return(av);
 }
