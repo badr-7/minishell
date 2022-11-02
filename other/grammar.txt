@@ -20,94 +20,94 @@ recursive-descent-parser
 
 
 
- typedef enum s_quote_mode
-3	{
-4	    UNQUOTED,
-5	    SINGLE_QUOTED,
-6	    DOUBLE_QUOTED,
-7	}    t_quote_mode;
-8	
-9	# define ENCODED_DOUBLEQ    -1
-10	# define ENCODED_SINGLEQ    -2
-11	
-12	void    *ft_memmove(void *dst, const void *src, int n)
-13	{
-14	    char        *_dst;
-15	    const char    *_src;
-16	
-17	    _dst = dst;
-18	    _src = src;
-19	    if (src < dst)
-20	    {
-21	        while (n--)
-22	            _dst[n] = _src[n];
-23	    }
-24	    else if (src > dst)
-25	    {
-26	        while (n--)
-27	            *(_dst++) = *(_src++);
-28	    }
-29	    return (dst);
-30	}
-31	
-32	
-33	t_quote_mode    switch_quote_mode(t_quote_mode mode, char next_char)
-34	{
-35	    if (next_char == '\'')
-36	    {
-37	        if (mode == SINGLE_QUOTED)
-38	            return (UNQUOTED);
-39	        if (mode == UNQUOTED)
-40	            return (SINGLE_QUOTED);
-41	    }
-42	    else if (next_char == '"')
-43	    {
-44	        if (mode == DOUBLE_QUOTED)
-45	            return (UNQUOTED);
-46	        if (mode == UNQUOTED)
-47	            return (DOUBLE_QUOTED);
-48	    }
-49	    return (mode);
-50	}
-51	
-52	
-53	char    *encode_quotes(char *_s)
-54	{
-55	    char            *s;
-56	    t_quote_mode    mode;
-57	
-58	    s = _s;
-59	    mode = UNQUOTED;
-60	    while (*s)
-61	    {
-62	        mode = switch_quote_mode(mode, *s);
-63	        if (*s == '"' && (mode == DOUBLE_QUOTED || mode == UNQUOTED))
-64	            *s = ENCODED_DOUBLEQ;
-65	        else if (*s == '\'' && (mode == SINGLE_QUOTED || mode == UNQUOTED))
-66	            *s = ENCODED_SINGLEQ;
-67	        s++;
-68	    }
-69	    return (_s);
-70	}
-71	char    *remove_quotes_enc(char *start)
-72	{
-73	    char    *s;
-74	    int    n;
-75	
-76	    s = start;
-77	    n = strlen(s) + 1;
-78	    while (*s)
-79	    {
-80	        if (*s == ENCODED_SINGLEQ || *s == ENCODED_DOUBLEQ)
-81	            ft_memmove(s, s + 1, n - 1);
-82	        else
-83	            s++;
-84	        n--;
-85	    }
-86	    return (start);
-87	}
-88	
-89	int main() {
-90	  remove_quotes_enc(encode_quotes(strdup("hello'sssss'ssss\"kdkd\"")));
-91	  return 0;
-92	}
+	typedef enum s_quote_mode
+	{
+		UNQUOTED,
+		SINGLE_QUOTED,
+		DOUBLE_QUOTED,
+	}    t_quote_mode;
+
+	# define ENCODED_DOUBLEQ    -1
+		# define ENCODED_SINGLEQ    -2
+		
+		void    *ft_memmove(void *dst, const void *src, int n)
+		{
+			char        *_dst;
+			const char    *_src;
+		
+			_dst = dst;
+			_src = src;
+			if (src < dst)
+			{
+				while (n--)
+					_dst[n] = _src[n];
+			}
+			else if (src > dst)
+			{
+				while (n--)
+					*(_dst++) = *(_src++);
+			}
+			return (dst);
+		}
+		
+		
+		t_quote_mode    switch_quote_mode(t_quote_mode mode, char next_char)
+		{
+			if (next_char == '\'')
+			{
+				if (mode == SINGLE_QUOTED)
+					return (UNQUOTED);
+				if (mode == UNQUOTED)
+					return (SINGLE_QUOTED);
+			}
+			else if (next_char == '"')
+			{
+				if (mode == DOUBLE_QUOTED)
+					return (UNQUOTED);
+				if (mode == UNQUOTED)
+					return (DOUBLE_QUOTED);
+			}
+			return (mode);
+		}
+		
+		
+		char    *encode_quotes(char *_s)
+		{
+			char            *s;
+			t_quote_mode    mode;
+		
+			s = _s;
+			mode = UNQUOTED;
+			while (*s)
+			{
+				mode = switch_quote_mode(mode, *s);
+				if (*s == '"' && (mode == DOUBLE_QUOTED || mode == UNQUOTED))
+					*s = ENCODED_DOUBLEQ;
+				else if (*s == '\'' && (mode == SINGLE_QUOTED || mode == UNQUOTED))
+					*s = ENCODED_SINGLEQ;
+				s++;
+			}
+			return (_s);
+		}
+		char    *remove_quotes_enc(char *start)
+		{
+			char    *s;
+			int    n;
+		
+			s = start;
+			n = strlen(s) + 1;
+			while (*s)
+			{
+				if (*s == ENCODED_SINGLEQ || *s == ENCODED_DOUBLEQ)
+					ft_memmove(s, s + 1, n - 1);
+				else
+					s++;
+				n--;
+			}
+			return (start);
+		}
+		
+		int main() {
+		remove_quotes_enc(encode_quotes(strdup("hello'sssss'ssss\"kdkd\"")));
+		return 0;
+		}

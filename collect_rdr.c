@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 16:36:04 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/01 14:44:12 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/02 13:33:58 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	write_heredoc_line(char *f, int fd, char *line, bool expand)
 	expanded = NULL;
 	if (expand)
 	{
-		expanded = expand_params(line);
+		expanded = exp_var(line);
 		if (!expanded)
 		{
 			close(fd);
@@ -58,7 +58,7 @@ static int	read_heredoc(char *f, char *delim, bool expand)
 	line = readline(">");
 	while (line)
 	{
-		if (!strcmp(line, delim))
+		if (!ft_strcmp(line, delim))
 			break ;
 		if (write_heredoc_line(f, fd, line, expand))
 			return (-1);
@@ -97,24 +97,24 @@ static char	*get_heredoc_filename(t_token t, char *delim)
 	return (file);
 }
 
-static char	*get_filename(t_token token)
+static char	*get_filename(char *file)
 {
-	t_list	*exp;
 	char	*s;
+	t_wc_node	*wc_list;
 
-	exp = expand_glob(token);
-	if (!exp)
+	wc_list = wc_ld_create(file);
+	if (!wc_list)
 		return (NULL);
-	if (ft_lstsize(exp) != 1)
+	if (ft_lstsize(wc_list) != 1)
 	{
 		ft_putstr_fd("minishell ", 2);
-		ft_putnstr_fd(token.pos, token.len, 2);
+		ft_putstr_fd(file, 2);
 		ft_putstr_fd(": ambiguous redirect", 2);
-		ft_lstclear(&exp, free);
+		ft_lstclear(&wc_list, free);
 		return (NULL);
 	}
-	s = exp->content;
-	ft_lstdelone(exp, NULL);
+	s = wc_list->d_name;
+	ft_lstdelone(wc_list, NULL);
 	return (s);
 }
 
@@ -133,7 +133,7 @@ t_rdr_node	*collect_rdr(t_lexer	*lexer, t_rdr_node	*rdr)
 	if (rdr->type == HERDOC)
 		rdr->file = get_heredoc_filename(token, ft_substr(token.pos, 0, token.len));
 	else
-		rdr->file = get_filename(token);
+		rdr->file = get_filename(ft_substr(token.pos, 0, token.len));
 	if (rdr->file)
 		return (rdr);
 	free(rdr);

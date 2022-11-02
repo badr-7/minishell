@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_input.c                                      :+:      :+:    :+:   */
+/*   rdr_addback.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 13:05:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/02 11:30:18 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/11/02 10:21:23 by mel-hous          #+#    #+#             */
+/*   Updated: 2022/11/02 10:24:18 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_parser_node	*parse_input(t_lexer *lexer)
+void	rdr_addback(t_rdr_node **lst, t_rdr_node *new)
 {
-	t_parser_node	*pipeline;
-	t_token			token;
+	t_cmd	*p;
 
-	pipeline = ft_pipe_line(lexer);
-	if (!pipeline || pipeline == MISSMATCH)
-		return (pipeline);
-	token = get_next_token(lexer);
-	if (token.type != END)
+    p = *lst;
+	if (!*lst)
 	{
-		ft_putstr_fd( "minishel: syntax error: unexpected end of file\n", 2);
-		node_tree_clear(&pipeline);
+		*lst = new;
+		return ;
 	}
-	return (pipeline);
+	while (!(p->next == NULL))
+		p = p->next;
+	p->next = new;
 }
