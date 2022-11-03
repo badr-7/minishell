@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 16:35:47 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/30 16:23:45 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:22:54 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*str_add(char *full, char c, char *s)
 	return (dest);
 }
 
-char	*exp_var(char **sp, char *expand)
+char	*exp_var(char **sp)
 {
 	char	*s;
 	size_t	i;
@@ -90,7 +90,7 @@ t_token	lex_var(t_lexer lexer, int len)
 			expnd = NO_EXPANSION;
 			if (mode != 1)
 				if (*s == '$')
-					expnd = exp_var(&s, expnd);
+					expnd = exp_var(&s);
 			if (expnd == NO_EXPANSION)
 				full = str_add(full, *s++, NULL);
 			else

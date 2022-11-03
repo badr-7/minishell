@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 16:36:04 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/02 13:33:58 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/03 15:23:38 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	write_heredoc_line(char *f, int fd, char *line, bool expand)
 	expanded = NULL;
 	if (expand)
 	{
-		expanded = exp_var(line);
+		expanded = exp_var(&line);
 		if (!expanded)
 		{
 			close(fd);
@@ -81,7 +81,7 @@ static char	*get_heredoc_filename(t_token t, char *delim)
 	exp = (exp && !ft_memchr(t.pos, DEF_DOUBEL_Q, t.len));
 	n_file = ft_itoa(i);
 	if (delim)
-		remove_quotes_enc(delim);
+		remove_q(delim);
 	if (n_file)
 		file = ft_strjoin("/tmp/minishell-heredoc-", n_file);
 	free(n_file);
@@ -118,11 +118,8 @@ static char	*get_filename(char *file)
 	return (s);
 }
 
-t_rdr_node	*collect_rdr(t_lexer	*lexer, t_rdr_node	*rdr)
+t_rdr_node	*collect_rdr(t_lexer	*lexer, t_rdr_node	*rdr, t_token token)
 {
-	t_token		token;
-
-	token = get_next_token(lexer);
 	rdr = malloc(sizeof(t_rdr_node));
 	if (!rdr)
 	{

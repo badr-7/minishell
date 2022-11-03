@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "lexer.h": "c",
-        "ex_ft.h": "c"
+        "ex_ft.h": "c",
+        "parser.h": "c"
     }
 }

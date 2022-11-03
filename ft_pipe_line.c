@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:30:20 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/03 09:50:03 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/03 15:08:47 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_parser_node   *ft_pipe_line(t_lexer   *lexer)
 	if (cmd && cmd == MISSMATCH)
 	{
     	pipe = check_pipe(lexer);
-		if (pipe == MISMATCH)
+		if (pipe == MISSMATCH)
 			return (cmd);
 		if (pipe)
 			pipe->left = cmd;
