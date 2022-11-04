@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 10:21:23 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/02 10:24:18 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:27:04 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	rdr_addback(t_rdr_node **lst, t_rdr_node *new)
 {
-	t_cmd	*p;
+	t_rdr_node	*p;
 
     p = *lst;
 	if (!*lst)

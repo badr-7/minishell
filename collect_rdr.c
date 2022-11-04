@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 16:36:04 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/03 15:23:38 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:36:09 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	read_heredoc(char *f, char *delim, bool expand)
 	line = readline(">");
 	while (line)
 	{
-		if (!ft_strcmp(line, delim))
+		if (!strcmp(line, delim))
 			break ;
 		if (write_heredoc_line(f, fd, line, expand))
 			return (-1);
@@ -105,16 +105,16 @@ static char	*get_filename(char *file)
 	wc_list = wc_ld_create(file);
 	if (!wc_list)
 		return (NULL);
-	if (ft_lstsize(wc_list) != 1)
+	if (wc_size(wc_list) != 1)
 	{
 		ft_putstr_fd("minishell ", 2);
 		ft_putstr_fd(file, 2);
 		ft_putstr_fd(": ambiguous redirect", 2);
-		ft_lstclear(&wc_list, free);
+		wc_clear(&wc_list);
 		return (NULL);
 	}
 	s = wc_list->d_name;
-	ft_lstdelone(wc_list, NULL);
+	// ft_lstdelone(wc_list, NULL);
 	return (s);
 }
 

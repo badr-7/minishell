@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 09:58:13 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/01 11:28:57 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/04 10:48:01 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,16 @@ char **av_creat(t_cmd **lst)
     while(list)
     {
         if (list->wc)
-        {
             while(list->wc)
             {
                 av[i++] = list->wc->d_name;
                 list->wc = list->wc->next;
             }
-        }
-        else
-            av[i++] = list->word;
+        av[i++] = list->word;
        list = list->next;
     }
-    av[i++] = NULL;
-    cmd_clear(lst);
+    if (av)
+        av[i] = NULL;
+    // cmd_clear(lst);
     return(av);
 }

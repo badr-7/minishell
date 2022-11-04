@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:30:20 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/03 15:08:47 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:33:30 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_parser_node   *ft_pipe_line(t_lexer   *lexer)
 		if (pipe)
 			pipe->left = cmd;
 		else
-			node_tree_clear(&cmd);
+			node_del(&cmd);
 		return (pipe);
 	}
 	return (cmd);

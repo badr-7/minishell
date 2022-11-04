@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 13:05:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/02 11:30:18 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:28:23 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_parser_node	*parse_input(t_lexer *lexer)
 	if (token.type != END)
 	{
 		ft_putstr_fd( "minishel: syntax error: unexpected end of file\n", 2);
-		node_tree_clear(&pipeline);
+		node_del(&pipeline);
 	}
 	return (pipeline);
 }
