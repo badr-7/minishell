@@ -6,12 +6,13 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 16:36:04 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/04 14:36:09 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/05 09:45:21 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include <fcntl.h>
+#include <string.h>
 
 static int	write_heredoc_line(char *f, int fd, char *line, bool expand)
 {

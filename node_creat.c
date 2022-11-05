@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 09:43:36 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/04 14:32:30 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/05 09:46:06 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,5 @@ void   *node_ptr(t_parser_node **node, t_parser_node *left, t_parser_node *right
 {
     (*node)->right = right;
     (*node)->left = left;
+    return(NULL);
 }

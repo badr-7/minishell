@@ -36,11 +36,13 @@ int main()
     char **av;
     t_lexer *lexer;
     t_rdr_node *rdr;
+    t_parser_node *tree;
 
     // *wc_ = wc_ld_create("*");
     list = ft_new_cmd("aaa", NULL);
     // list->next = ft_new_cmd("aaa", wc_);
-    // lexer = lex_init("echo << as");
+    lexer = lex_init(quote_def("echo << as | ls -la | echo $USER"));
+    tree = parse_input(lexer);
     // rdr = collect_rdr(lexer, rdr);
     av = av_creat(&list);
     // print_node_argv(av);
