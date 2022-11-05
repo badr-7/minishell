@@ -6,14 +6,14 @@
 #    By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/23 11:32:30 by mel-hous          #+#    #+#              #
-#    Updated: 2022/11/05 18:46:31 by mel-hous         ###   ########.fr        #
+#    Updated: 2022/11/05 19:33:55 by mel-hous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 DEBUG := 0
 CC := cc
 INCLUDES := -I include -I/goinfre/mel-hous/.brew/opt/readline/include
-CFLAGS := $(INCLUDES) -Wall -Wextra -Werror -MMD $(shell [ "$(DEBUG)" = "1" ] && echo " -g")
+CFLAGS := $(INCLUDES) -Wall -Wextra -Werror -MMD $(shell [ "$(DEBUG)" = "1" ] && echo " -g") -g
 LDFLAGS := -L/goinfre/mel-hous/.brew/opt/readline/lib -lreadline
 NAME := minishell
 SRC = 	lexer/change_mode.c\

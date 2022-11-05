@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:27:05 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/31 08:37:28 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/05 20:24:20 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_token	word_collect(t_lexer *lexer)
 		len++;
 	}
 	if (!len)
-		return (t_init(ERROR, 0, NULL));
+		return (t_init(END, 0, NULL));
 	if (mode != 0 && s[i] == '\0')
 		return (t_init(END, i, s));
 	// s = ft_expand_wldc(len, lexer);

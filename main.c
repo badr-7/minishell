@@ -27,7 +27,7 @@ void	print_node_argv(t_parser_node *node)
 int main(int argc, char **argv, char **envp)
 {
 	char	*line;
-	t_parser_node	*tree;
+	t_parser_node	*tree = NULL;
 
 	if(argc < 2 && !argv[1])
 	{
@@ -38,8 +38,11 @@ int main(int argc, char **argv, char **envp)
 			if (ft_strspn(line, " \n\t") < ft_strlen(line))
 				add_history(line);
 			tree = parse(line);
-			print_node_argv(tree);
-			node_del(&tree);
+			if (tree)
+			{
+				print_node_argv(tree);
+				node_del(&tree);
+			}
 			free(line);
 			line = readline("$");
 		}
