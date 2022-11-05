@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:27:05 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/05 20:24:20 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/05 21:36:43 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ t_token	word_collect(t_lexer *lexer)
 		if (token.wildcard != NULL)
 		{
 			token.len = len;
-			while(token.wildcard)
-			{
-				printf("--%s\n", token.wildcard->d_name);
-				token.wildcard = token.wildcard->next;
-			}
+			// while(token.wildcard)
+			// {
+			// 	printf("--%s\n", token.wildcard->d_name);
+			// 	token.wildcard = token.wildcard->next;
+			// }
 			return(token);
 		}
 	}

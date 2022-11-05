@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 12:41:49 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/30 16:31:00 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/05 21:36:57 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ t_token	get_next_token(t_lexer	*lexer)
 	int	i;
 
 	i = 0;
+	// while (lexer->str[i] && lexer->str[i] == 32)
+	// 	i++;
+	// lexer->str += i;
 	token = get_token(lexer);
 	//  printf("tok.str = %s\ntok.len = %d\n", token.pos, token.len);
 	lexer->str += token.len;

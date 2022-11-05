@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 12:40:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/05 20:30:46 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/05 21:35:56 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ t_cmd *cmd_ccomponents(t_lexer *lexer, t_rdr_node	*rdr)
 {
 	t_token	token;
 	 t_cmd	*cmd;
-	//  int i = 0;
+	// int i = 0;
 
 
     token = get_token(lexer);
 	while(1)
 	{
-		// puts("a\n");
+		// while(i < token.len)
+		//  	write(1, &token.pos[i++], 1);
+		// write(1, "1\n", 2);
 		if (token.type == WORD)
 			cmd_addback(&cmd, ft_new_cmd(ft_substr(lexer->str, 0, token.len), NULL));
 		else if(token.type == VAR)
@@ -35,11 +37,7 @@ t_cmd *cmd_ccomponents(t_lexer *lexer, t_rdr_node	*rdr)
 		else if(token.type == END || token.type != ERROR ||
 				token.type == PIPE)
 				break;
-		// while(i < token.len)
-		// write(1, &token.pos[i++], 1);
-		// write(1, "\n", 1);
 		token = get_next_token(lexer);
-		// sleep(2);
 	}
 	return (cmd);
 }

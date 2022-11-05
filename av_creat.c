@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 09:58:13 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/04 10:48:01 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/05 20:44:18 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ char **av_creat(t_cmd **lst)
     }
     if (av)
         av[i] = NULL;
-    // cmd_clear(lst);
+    cmd_clear(lst);
     return(av);
 }

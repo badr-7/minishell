@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:49:49 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/27 10:03:38 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/05 20:57:36 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ char    *quote_def(char  *str)
 	mode = 0;
 	while (*s)
 	{
-		// printf("%c\n", *s);
 		mode = change_mode(mode, *s);
 		if (*s == 34 && (mode == 2 || mode == 0))
 			*s = DEF_DOUBEL_Q;
