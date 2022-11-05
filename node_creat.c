@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 09:43:36 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/05 09:46:06 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/05 16:14:47 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ t_parser_node   *node_create(t_cmd **av, t_rdr_node *rdrlist, t_token_type tp)
     node->left = NULL;
     return (node);
 }
-void   *node_ptr(t_parser_node **node, t_parser_node *left, t_parser_node *right)
+void   node_ptr(t_parser_node **node, t_parser_node *left, t_parser_node *right)
 {
     (*node)->right = right;
     (*node)->left = left;
-    return(NULL);
 }

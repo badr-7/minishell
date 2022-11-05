@@ -6,20 +6,16 @@
 #    By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/23 11:32:30 by mel-hous          #+#    #+#              #
-#    Updated: 2022/11/05 10:42:32 by mel-hous         ###   ########.fr        #
+#    Updated: 2022/11/05 18:46:31 by mel-hous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-HEADR = parser.h
-
-NAME = parser.a
-
-CC = gcc
-
-INCLUDES := -I include -I$(HOME)/.homebrew/opt/readline/include
-
-CFLAGS := $(INCLUDES) -Wall -Wextra -Werror
-
+DEBUG := 0
+CC := cc
+INCLUDES := -I include -I/goinfre/mel-hous/.brew/opt/readline/include
+CFLAGS := $(INCLUDES) -Wall -Wextra -Werror -MMD $(shell [ "$(DEBUG)" = "1" ] && echo " -g")
+LDFLAGS := -L/goinfre/mel-hous/.brew/opt/readline/lib -lreadline
+NAME := minishell
 SRC = 	lexer/change_mode.c\
 		lexer/check_next_token.c\
 		lexer/ft_expand_var.c\
@@ -50,9 +46,29 @@ SRC = 	lexer/change_mode.c\
 		rdr_addback.c\
 		main.c\
 
-OBJ = ${SRC:.c=.o}
+OBJ := $(SRC:.c=.o)
+DEP := $(SRC:.c=.d)
 
-$(NAME) : $(OBJ) $(HEADR)
-			$(CC) $(CFLAGS) -o $(OBJ) $(libft.a)
+.PHONY: all re clean fclean bonus
 
-libft.a : $(make) -C libft/
+all: $(NAME)
+
+clean:
+	$(MAKE) -C libft clean
+	rm -rf $(OBJ) $(DEP)
+
+fclean:
+	$(MAKE) -C libft fclean
+	rm -f libft.a
+	rm -rf $(NAME) $(OBJ) $(DEP)
+
+re: fclean all
+
+libft.a:
+	$(MAKE) -C libft
+	mv libft/libft.a .
+
+$(NAME): libft.a $(OBJ)
+	$(CC) -o $(NAME) $(OBJ) libft.a $(LDFLAGS)
+
+-include $(DEP)

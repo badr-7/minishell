@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 15:20:04 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/05 09:42:28 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/05 16:31:27 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,16 @@ t_token	check_next_token(t_lexer	lexer, int i)
 		return (t_init(RD_APP, 2, lexer.str));
 	return (t_init(TRUE, 0, NULL));
 }
+
+// void fun(t_node *root)
+// {
+// 	if (root = NULL)
+// 		return
+// 	if (root->type == PIPE)
+// 	{
+// 		fun(root->left);
+// 		fun(root->right);
+// 	}
+// 	else
+// 		printf("root->argv = %s\n", argv);
+// }

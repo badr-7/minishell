@@ -8,7 +8,7 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/Users/mel-hous/Desktop/minishell/a.out",
+            "program": "/Users/mel-hous/Desktop/minishell/minishell",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

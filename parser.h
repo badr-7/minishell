@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 13:14:02 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/05 09:43:54 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/05 16:44:51 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char			**av_creat(t_cmd **list);
 t_rdr_node		*collect_rdr(t_lexer	*lexer, t_rdr_node	*rdr, t_token	token);
 void			rdr_addback(t_rdr_node **lst, t_rdr_node *new);
 void    		node_del(t_parser_node  **node);
-void   			*node_ptr(t_parser_node **node, t_parser_node *left, t_parser_node *right);
+void   			node_ptr(t_parser_node **node, t_parser_node *left, t_parser_node *right);
+void			rdr_clear(t_rdr_node **lst);
 
 #endif

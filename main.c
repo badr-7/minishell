@@ -5,20 +5,6 @@
 
 t_glb_v glb_v;
 
-void	node_tree_clear(t_parser_node **tree)
-{
-	t_parser_node	*node;
-
-	node = *tree;
-	if (node)
-	{
-		node_tree_clear(&node->left);
-		node_tree_clear(&node->right);
-		free(node);
-		*tree = NULL;
-	}
-}
-
 size_t	ft_strspn(const char *s, const char *accept)
 {
 	size_t	i;
@@ -53,7 +39,7 @@ int main(int argc, char **argv, char **envp)
 				add_history(line);
 			tree = parse(line);
 			print_node_argv(tree);
-			node_tree_clear(&tree);
+			node_del(&tree);
 			free(line);
 			line = readline("$");
 		}
