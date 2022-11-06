@@ -98,29 +98,32 @@ static char	*get_heredoc_filename(t_token t, char *delim)
 	return (file);
 }
 
-static char	*get_filename(char *file)
+static char	*get_filename(t_token file)
 {
 	char	*s;
-	t_wc_node	*wc_list;
 
-	wc_list = wc_ld_create(file);
-	if (!wc_list)
-		return (NULL);
-	if (wc_size(wc_list) != 1)
+	if (file.type == WLDC)
 	{
-		ft_putstr_fd("minishell ", 2);
-		ft_putstr_fd(file, 2);
-		ft_putstr_fd(": ambiguous redirect", 2);
-		wc_clear(&wc_list);
-		return (NULL);
+		if (!file.wildcard)
+			return (NULL);
+		if (wc_size(file.wildcard) != 1)
+		{
+			ft_putstr_fd("minishell ", 2);
+			// ft_putstr_fd(file, 2);
+			ft_putstr_fd(": ambiguous redirect", 2);
+			wc_clear(&file.wildcard);
+			return (NULL);
+		}
+		s = file.wildcard->d_name;
 	}
-	s = wc_list->d_name;
-	// ft_lstdelone(wc_list, NULL);
+	else
+		s = ft_substr(file.pos, 0, file.len);	// ft_lstdelone(wc_list, NULL);
 	return (s);
 }
 
 t_rdr_node	*collect_rdr(t_lexer	*lexer, t_rdr_node	*rdr, t_token token)
 {
+	token = get_next_token(lexer);
 	rdr = malloc(sizeof(t_rdr_node));
 	if (!rdr)
 	{
@@ -131,7 +134,7 @@ t_rdr_node	*collect_rdr(t_lexer	*lexer, t_rdr_node	*rdr, t_token token)
 	if (rdr->type == HERDOC)
 		rdr->file = get_heredoc_filename(token, ft_substr(token.pos, 0, token.len));
 	else
-		rdr->file = get_filename(ft_substr(token.pos, 0, token.len));
+		rdr->file = get_filename(token);
 	if (rdr->file)
 		return (rdr);
 	free(rdr);

@@ -75,7 +75,7 @@ int	cmd_size(t_cmd *lst)
 void	cmd_clear(t_cmd **lst)
 {
 	t_cmd	*tmp;
-	
+
 
 	tmp = 0;
 	if (!lst)

@@ -31,7 +31,6 @@ t_token	word_collect(t_lexer *lexer)
 	s = lexer->str;
 	mode = 0;
 	len = 0;
-	// puts("a\n");
 	while (s[len] != '\0' && (mode != 0 || (ft_strchr(" \t\n|&()<>", s[len]))))
 	{
 		mode = change_mode2(mode, s[len]);
@@ -49,26 +48,18 @@ t_token	word_collect(t_lexer *lexer)
 		return (t_init(END, 0, NULL));
 	if (mode != 0 && s[i] == '\0')
 		return (t_init(END, i, s));
-	// s = ft_expand_wldc(len, lexer);
 	if (var == 2 || var == 3)
 	{
 		token = lex_wildcard(*lexer, i);
 		if (token.wildcard != NULL)
 		{
 			token.len = len;
-			// while(token.wildcard)
-			// {
-			// 	printf("--%s\n", token.wildcard->d_name);
-			// 	token.wildcard = token.wildcard->next;
-			// }
 			return(token);
 		}
 	}
-	// puts("a\n");
-	// put_str(lexer.str,len);
+
 	if(var == 1 || var == 3)
 	{
-    	// puts("1\n");
 		token = lex_var(*lexer, len - 1);
 		if(token.type == VAR)
 		{

@@ -18,24 +18,11 @@ t_token	get_next_token(t_lexer	*lexer)
 	int	i;
 
 	i = 0;
-	// while (lexer->str[i] && lexer->str[i] == 32)
-	// 	i++;
-	// lexer->str += i;
 	token = get_token(lexer);
-	//  printf("tok.str = %s\ntok.len = %d\n", token.pos, token.len);
 	lexer->str += token.len;
 	lexer->prev_type = token;
-	//  if (token.wildcard)
-	//     {
-	// 	    while(token.wildcard->next != NULL)
-	// 	    {
-	// 		    printf("--%s\n", token.wildcard->d_name);
-	// 	    	token.wildcard = token.wildcard->next;
-    //         }
-	//     }
 	while (lexer->str[i] && lexer->str[i] == 32)
 		i++;
 	lexer->str += i;
-	// printf("str = %s\ni = %d\n",lexer->str, i);
 	return (token);
 }

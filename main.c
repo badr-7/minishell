@@ -10,7 +10,7 @@ size_t	ft_strspn(const char *s, const char *accept)
 	size_t	i;
 
 	i = 0;
-	while (s[i] && ft_strchr(accept, s[i]))
+	while (s[i] && !ft_strchr(accept, s[i]))
 		i++;
 	return (i);
 }
@@ -35,6 +35,7 @@ int main(int argc, char **argv, char **envp)
 		line = readline("$");
 		while (line)
 		{
+			// printf("%zu\n", ft_strspn(line, " \n\t"));
 			if (ft_strspn(line, " \n\t") < ft_strlen(line))
 				add_history(line);
 			tree = parse(line);

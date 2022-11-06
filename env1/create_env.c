@@ -15,7 +15,7 @@
 void    *manu(t_env_node   *var, char *s)
 {
     int j;
-    
+
     j = 0;
     while (s[j])
     {
@@ -30,10 +30,8 @@ t_env_node *create_env(char *env[])
 {
     t_env_node *var;
     int i;
-    int j;
 
     i = 0;
-    j = 0;
     var = NULL;
     while (env[i])
     {
