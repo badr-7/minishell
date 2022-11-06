@@ -16,13 +16,14 @@
 
 static int	write_heredoc_line(char *f, int fd, char *line, bool expand)
 {
-	char	*expanded;
+	t_token	expanded;
+	t_lexer	*lexer;
 
-	expanded = NULL;
 	if (expand)
 	{
-		expanded = exp_var(&line);
-		if (!expanded)
+		lexer = lex_init(line);
+		expanded = lex_var(*lexer, ft_strlen(lexer->full_str));
+		if (!expanded.pos)
 		{
 			close(fd);
 			unlink(f);
@@ -30,9 +31,9 @@ static int	write_heredoc_line(char *f, int fd, char *line, bool expand)
 			free(line);
 			return (-1);
 		}
-		ft_putstr_fd(expanded, fd);
+		ft_putstr_fd(expanded.pos, fd);
 		ft_putchar_fd('\n', fd);
-		free(expanded);
+		free(lexer);
 	}
 	else
 	{

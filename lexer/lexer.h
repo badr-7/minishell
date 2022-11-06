@@ -59,6 +59,7 @@ typedef struct s_lexer
 	char	*full_str;
 	char	*str;
 	t_token	prev_type;
+	t_token	curent_type;
 	t_error	error;
 }		t_lexer;
 

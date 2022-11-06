@@ -18,7 +18,7 @@ t_parser_node   *check_pipe(t_lexer  *lexer)
     t_parser_node   *pipe;
     t_token         token;
 
-    token = get_next_token(lexer);
+    token = get_token(lexer);
     if (token.type == PIPE)
     {
         pipe_line = ft_pipe_line(lexer);
@@ -34,9 +34,9 @@ t_parser_node   *check_pipe(t_lexer  *lexer)
             if(pipe)
                 return(pipe);
         }
-        return (pipe_line); 
+        return (pipe_line);
     }
     else
         return(MISSMATCH);
-     
+
 }

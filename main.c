@@ -22,6 +22,8 @@ void	print_node_argv(t_parser_node *node)
 
 	while (argv && *argv)
 		printf("%s\n", *argv++);
+	if(node->rdrlst)
+		printf("file = %s\n", node->rdrlst->file);
 }
 
 int main(int argc, char **argv, char **envp)
