@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 16:36:04 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/05 18:35:12 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/06 18:47:40 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ static char	*get_filename(t_token file)
 
 	if (file.type == WLDC)
 	{
+		puts("1\n");
 		if (!file.wildcard)
 			return (NULL);
 		if (wc_size(file.wildcard) != 1)
@@ -131,6 +132,7 @@ t_rdr_node	*collect_rdr(t_lexer	*lexer, t_rdr_node	*rdr, t_token token)
 		perror("minishell");
 		return (NULL);
 	}
+	rdr->next = NULL;
 	rdr->type = lexer->prev_type.type;
 	if (rdr->type == HERDOC)
 		rdr->file = get_heredoc_filename(token, ft_substr(token.pos, 0, token.len));
