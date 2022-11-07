@@ -20,10 +20,18 @@ void	print_node_argv(t_parser_node *node)
 {
 	char	**argv = node->av;
 
-	while (argv && *argv)
-		printf("%s\n", *argv++);
-	if(node->rdrlst)
-		printf("file = %s\n", node->rdrlst->file);
+	if(node->type == PIPE)
+	{
+		print_node_argv(node->left);
+		print_node_argv(node->right);
+	}
+	else
+	{
+		while (argv && *argv)
+			printf("%s\n", *argv++);
+		if(node->rdrlst)
+			printf("file = %s\n", node->rdrlst->file);
+	}
 }
 
 int main(int argc, char **argv, char **envp)
