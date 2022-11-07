@@ -17,6 +17,11 @@ t_token	get_token(t_lexer	*lexer)
 {
 	t_token	token;
 
+	while (lexer->str && *lexer->str == 32)
+		lexer->str++;
+	// lexer->str += i;
+	if(lexer->str[0] == '\0')
+		return (t_init(END, 0, NULL));
 	if (!ft_strncmp(lexer->str, "|", 1))
 		return (t_init(PIPE, 1, lexer->str));
 	if (!ft_strncmp(lexer->str, "<<", 2))

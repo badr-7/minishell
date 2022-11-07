@@ -45,9 +45,9 @@ t_token	word_collect(t_lexer *lexer)
 		len++;
 	}
 	if (!len)
-		return (t_init(END, 0, NULL));
-	if (mode != 0 && s[i] == '\0')
-		return (t_init(END, i, s));
+		return (t_init(ERROR, 0, NULL));
+	if (mode != 0 && s[len] == '\0')
+		return (t_init(ERROR, 0, NULL));
 	if (var == 2 || var == 3)
 	{
 		token = lex_wildcard(*lexer, len);

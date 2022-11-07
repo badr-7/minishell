@@ -20,9 +20,9 @@ t_parser_node   *check_pipe(t_lexer  *lexer)
     if (lexer->curent_type.type == PIPE)
     {
         pipe_line = ft_pipe_line(lexer);
-        if (!pipe_line)
+        if (!pipe_line || pipe_line == MISSMATCH)
         {
-            printf("ERROE");
+            printf("ERROE\n");
             return (NULL);
         }
         else

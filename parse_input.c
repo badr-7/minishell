@@ -25,6 +25,7 @@ t_parser_node	*parse_input(t_lexer *lexer)
 	{
 		ft_putstr_fd( "minishel: syntax error: unexpected end of file\n", 2);
 		node_del(&pipeline);
+		return(NULL);
 	}
 	return (pipeline);
 }
