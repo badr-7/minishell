@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_start.c                                     :+:      :+:    :+:   */
+/*   put_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 14:27:32 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/05 20:27:52 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/11/12 13:54:59 by mel-hous          #+#    #+#             */
+/*   Updated: 2022/11/12 14:00:15 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../libft/libft.h"
+#include "util.h"
 
-t_parser_node	*parse(char *input)
+void	put_line(char *line, int fd)
 {
-	t_parser_node	*ast;
-	t_lexer			*lexer;
-
-	lexer = lex_init(quote_def(input));
-	ast = parse_input(lexer);
-	if (!ast || ast == MISSMATCH)
-		return (NULL);
-	return (ast);
+	ft_putstr_fd(line, fd);
+	ft_putchar_fd('\n', fd);
 }

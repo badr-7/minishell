@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   str_tolower.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-hous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zmoussam <zmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 09:51:29 by mel-hous          #+#    #+#             */
-/*   Updated: 2021/11/18 12:53:35 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/11/14 13:55:27 by zmoussam          #+#    #+#             */
+/*   Updated: 2022/11/14 14:02:53 by zmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+#include "libft.h"
+
+void	str_tolower(char *str)
 {
-	new->next = *lst;
-	*lst = new;
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		str[i] = ft_tolower(str[i]);
 }

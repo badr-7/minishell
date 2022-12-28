@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_strchr_ex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-hous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/15 10:55:00 by mel-hous          #+#    #+#             */
-/*   Updated: 2021/11/15 10:56:30 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/11/10 16:56:03 by zmoussam          #+#    #+#             */
+/*   Updated: 2022/11/12 14:04:21 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+char	*ft_strchr_ex(const char *s, int c)
 {
-	t_list	*tmp;
+	int	i;
 
-	tmp = 0;
-	if (!lst)
-		return ;
-	while (*lst)
+	i = 0;
+	if (!c)
+		return ((char *)s + ft_strlen(s));
+	while (s[i])
 	{
-		tmp = *lst;
-		*lst = (*lst)->next;
-		del((tmp)->content);
-		free(tmp);
+		if (s[i] == (unsigned char)c)
+			return ((char *)s + i);
+		i++;
 	}
+	return (0);
 }

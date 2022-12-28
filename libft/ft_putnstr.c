@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_putnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-hous <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 15:13:55 by mel-hous          #+#    #+#             */
-/*   Updated: 2021/11/18 15:14:44 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/11/07 15:44:19 by mel-hous          #+#    #+#             */
+/*   Updated: 2022/11/12 14:03:07 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+void	ft_putnstr(char	*s, int len, int fd)
 {
-	if (!f)
-		return ;
-	while (lst)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
+	int	i;
+
+	i = 0;
+	while (i < len)
+		write(fd, &s[i++], 1);
 }

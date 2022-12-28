@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_input.c                                      :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 13:05:53 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/05 19:05:32 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/11/06 18:04:24 by zmoussam          #+#    #+#             */
+/*   Updated: 2022/11/12 14:04:40 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "libft.h"
 
-t_parser_node	*parse_input(t_lexer *lexer)
+int	ft_strcmp(char *s1, char *s2)
 {
-	t_parser_node	*pipeline;
-	t_token			token;
+	int	i;
 
-	pipeline = ft_pipe_line(lexer);
-	if (!pipeline || pipeline == MISSMATCH)
-		return (pipeline);
-	token = get_next_token(lexer);
-	if (token.type != END)
-	{
-		ft_putstr_fd( "minishel: syntax error: unexpected end of file\n", 2);
-		node_del(&pipeline);
-		return(NULL);
-	}
-	return (pipeline);
+	i = 0;
+	while (s1[i] == s2[i] && (s1[i] != '\0' && s2[i] != '\0'))
+		i++;
+	return (s1[i] - s2[i]);
 }

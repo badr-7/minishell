@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_ld.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zmoussam <zmoussam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 10:47:27 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/10/06 10:48:21 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/14 00:17:35 by zmoussam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ t_env_node	*lstlast(t_env_node *lst)
 	return (lst);
 }
 
-
 void	add_back(t_env_node **lst, t_env_node *new)
 {
 	t_env_node	*p;
 
+	if (!new)
+		return (printf("minishell:memory was not allocated!\n"), (void)0);
 	if (!*lst)
 	{
 		*lst = new;
@@ -41,10 +42,22 @@ t_env_node	*new_node(char *content, char *name, int len)
 
 	s = (t_env_node *)malloc(sizeof(t_env_node));
 	if (s == NULL)
-		return (NULL);
+		return (printf("minishell:memory was not allocated!\n"), NULL);
+	if (!name)
+		return (printf("minishell:memory was not allocated!\n"), free(s), NULL);
+	if (!content)
+		return (printf("minishell:memory was not allocated!\n"), \
+		free(s), free(name), NULL);
 	s->content = content;
-    s->name = name;
-    s->len = len;
+	s->name = name;
+	s->len = len;
 	s->next = NULL;
 	return (s);
+}
+
+void	delone_env(t_env_node *node)
+{
+	free(node->name);
+	free(node->content);
+	free(node);
 }

@@ -6,7 +6,7 @@
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 11:43:44 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/04 10:47:40 by mel-hous         ###   ########.fr       */
+/*   Updated: 2022/11/12 11:46:09 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_cmd	*ft_new_cmd(char *content, t_wc_node **list)
 	s->wc = NULL;
 	s->next = NULL;
 	if (list)
-    	s->wc = *list;
+		s->wc = *list;
 	return (s);
 }
 
@@ -54,8 +54,8 @@ int	cmd_size(t_cmd *lst)
 	int	i;
 
 	i = 0;
-	if	(!lst)
-		return(0);
+	if (!lst)
+		return (0);
 	while (lst)
 	{
 		if (lst->wc)
@@ -76,15 +76,15 @@ void	cmd_clear(t_cmd **lst)
 {
 	t_cmd	*tmp;
 
-
 	tmp = 0;
 	if (!lst)
 		return ;
 	while (*lst)
 	{
-		if((*lst)->wc)
+		if ((*lst)->wc)
 		{
 			wc_clear(&(*lst)->wc);
+			tmp = *lst;
 			*lst = (*lst)->next;
 			free(tmp);
 		}
@@ -92,7 +92,7 @@ void	cmd_clear(t_cmd **lst)
 		{
 			tmp = *lst;
 			*lst = (*lst)->next;
-			// free((tmp)->word);
+			free(tmp->word);
 			free(tmp);
 		}
 	}

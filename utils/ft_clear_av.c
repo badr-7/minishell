@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pipe_line.c                                     :+:      :+:    :+:   */
+/*   ft_clear_av.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mel-hous <mel-hous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 14:30:20 by mel-hous          #+#    #+#             */
-/*   Updated: 2022/11/05 19:06:21 by mel-hous         ###   ########.fr       */
+/*   Created: 2022/11/11 11:05:54 by mel-hous          #+#    #+#             */
+/*   Updated: 2022/11/11 11:42:53 by mel-hous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include"util.h"
+#include <stdlib.h>
 
-t_parser_node   *ft_pipe_line(t_lexer   *lexer)
+void	ft_clear_av(char **str)
 {
-	t_parser_node	*cmd;
-	t_parser_node	*pipe;
+	int	i;
 
-	cmd = collect_cmd(lexer);
-	if (cmd && cmd != MISSMATCH)
-	{
-    	pipe = check_pipe(lexer);
-		if (pipe == MISSMATCH)
-			return (cmd);
-		if (pipe)
-			pipe->left = cmd;
-		else
-			node_del(&cmd);
-		return (pipe);
-	}
-	return (cmd);
+	i = 0;
+	while (str[i])
+		free (str[i++]);
+	free (str);
 }
